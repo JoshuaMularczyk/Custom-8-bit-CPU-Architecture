@@ -10,7 +10,8 @@ For this project, Ethan Stong, [Christian Williams](https://github.com/cwill713)
 
 This was a 5 step project with an emphasis on creating a Custom Instruction Set, CPU Architecture, and an Assembler. We then implimented this in hardware using C++ language code.
 
-insert 5 step photo here
+<img width="269" alt="method" src="https://user-images.githubusercontent.com/103919092/177882280-98607888-c47d-4be6-b16a-c575cbc16c44.PNG">
+
 
 ## Custom Instruction Set
 
@@ -31,11 +32,13 @@ We realized that with only an 8-bit architecture, we would be limited to how man
 -	Second byte is register (second 4 bits)
 -	Third and fourth byte are the data or address (8bits)
 
-picture
+<img width="527" alt="instforma" src="https://user-images.githubusercontent.com/103919092/177882299-ea938a1b-1b69-43c8-8a76-c8ab27b68d3c.PNG">
 
 ### Instruction Library
 
-picture
+<img width="358" alt="lib1" src="https://user-images.githubusercontent.com/103919092/177882318-556a6f3a-49f4-460d-9694-de12c39f86ad.PNG">
+<img width="358" alt="lib2" src="https://user-images.githubusercontent.com/103919092/177882319-aa0a20a1-fe54-4c83-a9c0-a5d1205ca6be.PNG">
+<img width="358" alt="lib3" src="https://user-images.githubusercontent.com/103919092/177882322-2c30abfa-236f-4bc3-9f89-ee529b2a4996.PNG">
 
 ## Assembler
 
@@ -47,40 +50,19 @@ I designed the assembler using Python due to its user friendly token features. I
 
 The code displayed below allows access to the assembler input text file. It then processes the file and separates all the instructions into tokens. In this code, a token is anything separated by whitespace.
 
-file = "assemblerInput.txt"
-filehandle = open("assemblerInput.txt","r")
-with filehandle:
-    for line in filehandle:
-        tokenized_line = line.split()
-        
+<img width="417" alt="code1" src="https://user-images.githubusercontent.com/103919092/177882380-418a1cc6-36ba-4475-83df-3812e50cfb51.PNG">
+ 
 ### Part II.
 
 The second part of the assembler, represented by the code below, is in charge of deciding what OPCODE leads each line. Once it reads the first token of each line, it uses and if-else statement to determine what to do based on what instruction it is. The general idea of what happens in each if-statement is: the register tokens, address tokens, and immediate tokens are all read and added into an array as decimal values. These values are then all converted into binary.
 
-if tokenized_line[0].upper() =="LM":
-            r=int(tokenized_line[1][1])
-            hex = tokenized_line[2]
-            hex_list = hex.split("x")
-            v=int(hex_list[(1)])                            
-            b=[2,r,v>>4,v&0xF]                            
-            i=bin(b[0])
-            j=bin(b[1])
-            k=bin(b[2])
-            l=bin(b[3])
-            m=[i,j,k,l,]
-            
+<img width="262" alt="code2" src="https://user-images.githubusercontent.com/103919092/177882401-b6bb342a-f9e9-4e36-9b51-e41e3fc54ecb.PNG">
+        
 ### Part III.
 
 The final part of the assembler is sending these lines of binary into the output text file. This is displayed in the code below.
 
-lines = m
-            with open('assemblerOutput.txt', 'a') as f:
-                for line in lines:
-                    f.write(line)
-                    f.write(' ')
-
-
-                f.write('\n')
+<img width="416" alt="code3" src="https://user-images.githubusercontent.com/103919092/177882426-1dd9f9d6-6b5b-46ae-ab89-b7347b9c2a41.PNG">
 
 [Full Code](https://github.com/JoshuaMularczyk/Custom-8-bit-CPU-Architecture/blob/main/Program%20Files/Python%20Assember%20Code.txt).
 
