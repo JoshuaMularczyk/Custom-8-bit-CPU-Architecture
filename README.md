@@ -44,7 +44,8 @@ We realized that with only an 8-bit architecture, we would be limited to how man
 
 I designed the assembler using Python due to its user friendly token features. I would type out a series of our assembly instructions into a txt file shown below. The assembler would then look through all the instructions, determine what they were and what registers were being used, and output the instruction lines as binary code. The code for the assembler can be viewed [here](https://github.com/JoshuaMularczyk/Custom-8-bit-CPU-Architecture/blob/main/Program%20Files/Python%20Assember%20Code.txt).
 
-2 pictures
+<img width="88" alt="assemin" src="https://user-images.githubusercontent.com/103919092/177890393-252ea3cd-22f0-4989-964c-627cee9000d3.PNG">
+<img width="138" alt="assemout" src="https://user-images.githubusercontent.com/103919092/177890395-3cc106a4-7470-41b5-b6bc-055ed85cb441.PNG">
 
 ### Part I.
 
