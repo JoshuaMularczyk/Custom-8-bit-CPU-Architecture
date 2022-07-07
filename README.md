@@ -4,9 +4,7 @@ This project was created for CPTR 380 instructed by Dr. Larray Aamodt. It is the
 
 ## Overview
 
-For this project, [Ethan Stong], [Christian Williams], and I were tasked with developing a CPU architecture that would run a specific routine. The routine that we decided to base our architecture off of was a Histogram equalization routine of a simple greyscale image. With that in mind we decided to use 8-bit architecture due to its simplicity. Adding more bits would allow us to "use more pixels in our histogram routine", but for the time frame given we could demonstrate this project with 8 bits which allowed for up to 256 shades.
-
-For this project, [Ethan Stong](), [Christian Williams](), and I were tasked with developing a custom CPU (Central Processing Unit) architecture that would run a specific routine. Our architecture aimed for a simple 16X16 greyscale image with up to 256 shades. The architecture has 16 8-bit registers and is a store/load instruction set (no Move instruction). There are 16 instructions that run on single cycle design (no pipeline). As the architecture is simple, we are assuming that the programmer made no errors so there is no error detection or exceptions. Max Program Size is 256 instructions.
+For this project, [Ethan Stong](), [Christian Williams](https://github.com/cwill713), and I were tasked with developing a custom CPU (Central Processing Unit) architecture that would run a specific routine. Our architecture aimed for a simple histogram 16X16 greyscale image with up to 256 shades. The architecture has 16 8-bit registers and is a store/load instruction set (no Move instruction). There are 16 instructions that run on single cycle design (no pipeline). As the architecture is simple, we are assuming that the programmer made no errors so there is no error detection or exceptions. Max Program Size is 256 instructions.
 
 ## Theory
 
