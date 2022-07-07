@@ -70,9 +70,9 @@ The final part of the assembler is sending these lines of binary into the output
 
 The hardware design was discussed as a group, and Ethan drew out the basic architecture needed to implement our routine. Snippets of the architecture are shown below.
 
-![image](https://user-images.githubusercontent.com/103919092/177879477-3c5770e1-4f99-4d63-a4b3-b097bcd87400.png)
+<img width="416" alt="code3" src="https://user-images.githubusercontent.com/103919092/177879477-3c5770e1-4f99-4d63-a4b3-b097bcd87400.png">
 
-![image](https://user-images.githubusercontent.com/103919092/177879560-7a524697-0a8d-4a78-8518-8b58a3798ba8.png)
+<img width="416" alt="code3" src="https://user-images.githubusercontent.com/103919092/177879560-7a524697-0a8d-4a78-8518-8b58a3798ba8.png">
 
 ## Software Simulation
 
