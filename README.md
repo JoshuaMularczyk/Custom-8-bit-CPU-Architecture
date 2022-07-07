@@ -4,7 +4,7 @@ This project was created for CPTR 380 instructed by Dr. Larray Aamodt. It is the
 
 ## Overview
 
-For this project, [Ethan Stong](), [Christian Williams](https://github.com/cwill713), and I were tasked with developing a custom CPU (Central Processing Unit) architecture that would run a specific routine. Our architecture aimed for a simple histogram 16X16 greyscale image with up to 256 shades. The architecture has 16 8-bit registers and is a store/load instruction set (no Move instruction). There are 16 instructions that run on single cycle design (no pipeline). As the architecture is simple, we are assuming that the programmer made no errors so there is no error detection or exceptions. Max Program Size is 256 instructions.
+For this project, Ethan Stong, [Christian Williams](https://github.com/cwill713), and I were tasked with developing a custom CPU (Central Processing Unit) architecture that would run a specific routine. Our architecture aimed for a simple histogram 16X16 greyscale image with up to 256 shades. The architecture has 16 8-bit registers and is a store/load instruction set (no Move instruction). There are 16 instructions that run on single cycle design (no pipeline). As the architecture is simple, we are assuming that the programmer made no errors so there is no error detection or exceptions. Max Program Size is 256 instructions.
 
 ## Theory
 
@@ -39,7 +39,7 @@ picture
 
 ## Assembler
 
-I designed the assembler using Python due to its user friendly token features. I would type out a series of our assembly instructions into a txt file shown below. The assembler would then look through all the instructions, determine what they were and what registers were being used, and output the instruction lines as binary code. The code for the assembler can be viewed [here]().
+I designed the assembler using Python due to its user friendly token features. I would type out a series of our assembly instructions into a txt file shown below. The assembler would then look through all the instructions, determine what they were and what registers were being used, and output the instruction lines as binary code. The code for the assembler can be viewed [here](https://github.com/JoshuaMularczyk/Custom-8-bit-CPU-Architecture/blob/main/Program%20Files/Python%20Assember%20Code.txt).
 
 2 pictures
 
@@ -82,7 +82,7 @@ lines = m
 
                 f.write('\n')
 
-[Full Code]().
+[Full Code](https://github.com/JoshuaMularczyk/Custom-8-bit-CPU-Architecture/blob/main/Program%20Files/Python%20Assember%20Code.txt).
 
 ## Hardware
 
@@ -108,4 +108,4 @@ Overview of ALU:
 - Control Line Selection bus
 - Triggers branch flag for beq, blt, and bgt instructions
 
-Other blocks created were program memory, main memory, control unit, program counter, and registers. The code for this can be viewed [here](). More indebth information for the software implementation can be read in our [report]().
+Other blocks created were program memory, main memory, control unit, program counter, and registers. The code for this can be viewed [here](). More indebth information for the software implementation can be read in our [report](https://github.com/JoshuaMularczyk/Custom-8-bit-CPU-Architecture/blob/main/Documentation/Custom%20CPU%20Report.docx).
