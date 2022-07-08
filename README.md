@@ -1,6 +1,6 @@
 # Custom-8-bit-CPU-Architecture
 
-This project was created for CPTR 380 instructed by Dr. Larray Aamodt. It is the design of a Custom 8-bit CPU with a histogram routine in mind
+This project was created for CPTR 380 instructed by Dr. Larray Aamodt. It is the design of a Custom 8-bit CPU with a histogram routine in mind.
 
 ## Overview
 
