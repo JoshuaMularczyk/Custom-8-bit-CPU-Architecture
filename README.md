@@ -30,7 +30,7 @@ We realized that with only an 8-bit architecture, we would be limited to how man
 
 -	First byte is opcode (first 4 bits)
 -	Second byte is register (second 4 bits)
--	Third and fourth byte are the data or address (8bits)
+-	Third and fourth bytes are the data or address (8bits)
 
 <img width="527" alt="instforma" src="https://user-images.githubusercontent.com/103919092/177882299-ea938a1b-1b69-43c8-8a76-c8ab27b68d3c.PNG">
 
