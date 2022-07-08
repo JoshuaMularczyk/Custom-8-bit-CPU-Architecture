@@ -96,4 +96,4 @@ Overview of ALU:
 - Control Line Selection bus
 - Triggers branch flag for beq, blt, and bgt instructions
 
-Other blocks created were program memory, main memory, control unit, program counter, and registers. The code for this can be viewed [here](). More indebth information for the software implementation can be read in our [report](https://github.com/JoshuaMularczyk/Custom-8-bit-CPU-Architecture/blob/main/Documentation/Custom%20CPU%20Report.docx).
+Other blocks created were program memory, main memory, control unit, program counter, and registers. The code for this can be viewed [here](https://github.com/JoshuaMularczyk/Custom-8-bit-CPU-Architecture/blob/main/Program%20Files/SoftwareImplementationC%2B%2B.txt). More indebth information for the software implementation can be read in our [report](https://github.com/JoshuaMularczyk/Custom-8-bit-CPU-Architecture/blob/main/Documentation/Custom%20CPU%20Report.docx).
