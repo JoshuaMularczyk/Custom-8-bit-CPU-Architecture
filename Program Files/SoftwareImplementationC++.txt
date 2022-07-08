@@ -1,0 +1,617 @@
+#include <fstream>
+#include <string>
+#include <iostream>
+#include <sstream>
+#include <bitset>
+
+
+using namespace std;
+bool load, store, branch, add, sub, addi, subi, andLine, orLine, memWrite, memRead, memToRegister, bType, lessThan, gThan, beq, toBranch;
+bool endProg = false;
+int ALUresult;
+int regOne = 0, regTwo = 0, regThree = 0, regFour = 0, regFive = 0, regSix = 0, regSeven = 0, regEight = 0, regNine = 0, regTen = 0, regEleven = 0, regTwelve = 0, regThirteen = 0, regFourteen = 0, regFifteen = 0, regSixteen = 0;
+int programMem[256][4];
+int mainMemory[128];
+int memoryRetrieve(int address);
+void memoryStore(int toStore, int address);
+int programCounter = 0;
+int opcode;
+int firstReg;
+int secondReg;
+int thirdReg;
+int address;
+int ALU(int inputA, int inputB);
+void AssemblertoProgramMem();
+void addressPlusOne();
+void MemtoRegisters();
+
+
+void controlUnit(int opCode)
+{
+    load = false;
+    store = false;
+    branch = false;
+    add = false;
+    addi = false;
+    sub = false;
+    subi = false;
+    andLine = false;
+    orLine = false;
+    memWrite = false;
+    memRead = false;
+    memToRegister = false;
+    bType = false;
+    gThan = false;
+    lessThan = false;
+    beq = false;
+    toBranch = false;
+    switch (opCode)
+    {
+    case 2:
+        load = true;
+        memToRegister = true;
+        memRead = true;
+        break;
+    case 3:
+        store = true;
+        memWrite = true;
+        break;
+    case 4:
+        endProg = true;
+        break;
+    case 6:
+        beq = true;
+        break;
+    case 7:
+        gThan = true;
+        break;
+    case 8:
+        lessThan = true;
+    case 9:
+        branch = true;
+    case 10:
+        addi = true;
+        break;
+    case 11:
+        add = true;
+        break;
+    case 12:
+        subi = true;
+        break;
+    case 13:
+        sub = true;
+        break;
+    case 0:
+        andLine = true;
+        break;
+    case 1:
+        orLine = true;
+        break;
+    }
+}
+
+
+int main()
+{
+    AssemblertoProgramMem();
+    programCounter = 0;
+    while (endProg == false)
+    {
+        MemtoRegisters();
+        controlUnit(opcode);
+        // cout << opcode << endl;
+        ALUresult = ALU(firstReg, secondReg);
+        if (store == true)
+        {
+            switch (thirdReg)
+            {
+            case 1:
+                memoryStore(regOne, address);
+                break;
+            case 2:
+                memoryStore(regTwo, address);
+                break;
+            case 3:
+                memoryStore(regThree, address);
+                break;
+            case 4:
+                memoryStore(regFour, address);
+                break;
+            case 5:
+                memoryStore(regFive, address);
+                break;
+            case 6:
+                memoryStore(regSix, address);
+                break;
+            case 7:
+                memoryStore(regSeven, address);
+                break;
+            case 8:
+                memoryStore(regEight, address);
+                break;
+            case 9:
+                memoryStore(regNine, address);
+                break;
+            case 10:
+                memoryStore(regTen, address);
+                break;
+            case 11:
+                memoryStore(regEleven, address);
+                break;
+            case 12:
+                memoryStore(regTwelve, address);
+                break;
+            case 13:
+                memoryStore(regThirteen, address);
+                break;
+            case 14:
+                memoryStore(regFourteen, address);
+                break;
+            case 15:
+                memoryStore(regFifteen, address);
+                break;
+            case 16:
+                memoryStore(regSixteen, address);
+                break;
+            }
+        }
+        if (load == true)
+        {
+            switch (firstReg)
+            {
+            case 1:
+                regOne = memoryRetrieve(address);
+                break;
+            case 2:
+                regTwo = memoryRetrieve(address);
+                break;
+            case 3:
+                regThree = memoryRetrieve(address);
+                break;
+            case 4:
+                regFour = memoryRetrieve(address);
+                break;
+            case 5:
+                regFive = memoryRetrieve(address);
+                break;
+            case 6:
+                regSix = memoryRetrieve(address);
+                break;
+            case 7:
+                regSeven = memoryRetrieve(address);
+                break;
+            case 8:
+                regEight = memoryRetrieve(address);
+                break;
+            case 9:
+                regNine = memoryRetrieve(address);
+                break;
+            case 10:
+                regTen = memoryRetrieve(address);
+                break;
+            case 11:
+                regEleven = memoryRetrieve(address);
+                break;
+            case 12:
+                regTwelve = memoryRetrieve(address);
+                break;
+            case 13:
+                regThirteen = memoryRetrieve(address);
+                break;
+            case 14:
+                regFourteen = memoryRetrieve(address);
+                break;
+            case 15:
+                regFifteen = memoryRetrieve(address);
+                break;
+            case 16:
+                regSixteen = memoryRetrieve(address);
+                break;
+            }
+        }
+        if (branch == true || beq == true || lessThan == true || gThan == true)
+        {
+            programCounter = address;
+        }
+        else
+        {
+            switch (thirdReg)
+            {
+            case 1:
+                regOne = ALUresult;
+                break;
+            case 2:
+                regTwo = ALUresult;
+                break;
+            case 3:
+                regThree = ALUresult;
+                break;
+            case 4:
+                regFour = ALUresult;
+                break;
+            case 5:
+                regFive = ALUresult;
+                break;
+            case 6:
+                regSix = ALUresult;
+                break;
+            case 7:
+                regSeven = ALUresult;
+                break;
+            case 8:
+                regEight = ALUresult;
+                break;
+            case 9:
+                regNine = ALUresult;
+                break;
+            case 10:
+                regTen = ALUresult;
+                break;
+            case 11:
+                regEleven = ALUresult;
+                break;
+            case 12:
+                regTwelve = ALUresult;
+                break;
+            case 13:
+                regThirteen = ALUresult;
+                break;
+            case 14:
+                regFourteen = ALUresult;
+                break;
+            case 15:
+                regFifteen = ALUresult;
+                break;
+            case 16:
+                regSixteen = ALUresult;
+                break;
+            }
+            addressPlusOne();
+        }
+    }
+    cout << mainMemory[1] << endl;
+    cout << mainMemory[2] << endl;
+}
+
+
+int ALU(int inputA, int inputB)
+{
+    int result;
+    if (load != true || store != true)
+    {
+        int dataOne;
+        int dataTwo;
+        switch (inputA)
+        {
+        case 1:
+            dataOne = regOne;
+            break;
+        case 2:
+            dataOne = regTwo;
+            break;
+        case 3:
+            dataOne = regThree;
+            break;
+        case 4:
+            dataOne = regFour;
+            break;
+        case 5:
+            dataOne = regFive;
+            break;
+        case 6:
+            dataOne = regSix;
+            break;
+        case 7:
+            dataOne = regSeven;
+            break;
+        case 8:
+            dataOne = regEight;
+            break;
+        case 9:
+            dataOne = regNine;
+            break;
+        case 10:
+            dataOne = regTen;
+            break;
+        case 11:
+            dataOne = regEleven;
+            break;
+        case 12:
+            dataOne = regTwelve;
+            break;
+        case 13:
+            dataOne = regThirteen;
+            break;
+        case 14:
+            dataOne = regFourteen;
+            break;
+        case 15:
+            dataOne = regFifteen;
+            break;
+        case 16:
+            dataOne = regSixteen;
+            break;
+        }
+        if (add == true || sub == true || andLine == true || orLine || true || beq == true || gThan == true || lessThan == true)
+        {
+            switch (inputB)
+            {
+            case 1:
+                dataTwo = regOne;
+                break;
+            case 2:
+                dataTwo = regTwo;
+                break;
+            case 3:
+                dataTwo = regThree;
+                break;
+            case 4:
+                dataTwo = regFour;
+                break;
+            case 5:
+                dataTwo = regFive;
+                break;
+            case 6:
+                dataTwo = regSix;
+                break;
+            case 7:
+                dataTwo = regSeven;
+                break;
+            case 8:
+                dataTwo = regEight;
+                break;
+            case 9:
+                dataTwo = regNine;
+                break;
+            case 10:
+                dataTwo = regTen;
+                break;
+            case 11:
+                dataTwo = regEleven;
+                break;
+            case 12:
+                dataTwo = regTwelve;
+                break;
+            case 13:
+                dataTwo = regThirteen;
+                break;
+            case 14:
+                dataTwo = regFourteen;
+                break;
+            case 15:
+                dataTwo = regFifteen;
+                break;
+            case 16:
+                dataTwo = regSixteen;
+                break;
+            }
+        }
+        if (addi == true)
+        {
+            result = dataOne + inputB;
+        }
+        if (subi == true)
+        {
+            result = dataOne - inputB;
+        }
+        if (add == true)
+        {
+            result = dataOne + dataTwo;
+        }
+        if (sub == true)
+        {
+            result = dataOne - dataTwo;
+        }
+        if (andLine == true)
+        {
+            result = dataOne & dataTwo;
+        }
+        if (orLine == true)
+        {
+            result = dataOne | dataTwo;
+        }
+        if (beq == true)
+        {
+            if (dataOne == dataTwo)
+            {
+                toBranch = true;
+            }
+        }
+        if (lessThan == true)
+        {
+            if (dataOne < dataTwo)
+            {
+                toBranch = true;
+            }
+        }
+        if (gThan == true)
+        {
+            if (dataOne > dataTwo)
+            {
+                toBranch = true;
+            }
+        }
+    }
+    return result;
+}
+int memoryRetrieve(int address)
+{
+    return mainMemory[address];
+}
+void memoryStore(int toStore, int address)
+{
+    mainMemory[address] = toStore;
+}
+
+
+void AssemblertoProgramMem();
+void addressPlusOne();
+
+
+void AssemblertoProgramMem()
+{
+    string line;
+    int i = 0;
+    int k = 0;
+    string data[256];
+    string array[4];
+    int b = 0;
+    int a = 0;
+    stringstream toArray("");
+
+
+    ifstream file("Test.txt");
+    if (file.is_open())
+    {
+        while (!file.eof())
+        {
+            k = 0;
+
+
+            // reads line in file
+            getline(file, data[i], '\n');
+
+
+            // copies line that is read
+            toArray.str((data[i]));
+            // stores copied in to array for bitset
+            while (k < 4)
+            {
+                toArray >> array[k];
+                k++;
+            }
+
+
+            // resets the stream
+            stringstream().swap(toArray);
+
+
+            for (int p = 0; p < 4; p++)
+            {
+                array[p] = array[p].erase(0, 2);
+            }
+
+
+            if ((array[0] == "10") || (array[0] == "11") || (array[0] == "1001"))
+            {
+
+
+                array[2] = array[2] + array[3];
+                array[3] = "";
+
+
+                if (b < 255)
+                {
+                    while (a < 4)
+                    {
+                        bitset<8> bs4(array[a]);
+                        programMem[b][a] = (bs4.to_ulong());
+                        a++;
+                    }
+                    a = 0;
+                }
+            }
+            else
+            {
+                if (b < 255)
+                {
+                    while (a < 4)
+                    {
+                        bitset<8> bs4(array[a]);
+                        programMem[b][a] = (bs4.to_ulong());
+                        a++;
+                    }
+                    a = 0;
+                }
+            }
+            i++;
+            b++;
+        }
+    }
+    return;
+}
+
+
+void addressPlusOne()
+{
+    programCounter++;
+}
+void MemtoRegisters()
+{
+    opcode = programMem[programCounter][0];
+    thirdReg = programMem[programCounter][1];
+
+
+    if ((opcode == 2 || opcode == 3))
+    {
+        address = programMem[programCounter][2];
+    }
+    else if (opcode == 9)
+    {
+
+
+        thirdReg = programMem[programCounter][1];
+        switch (thirdReg)
+        {
+        case 1:
+            address = regOne;
+            break;
+        case 2:
+            address = regTwo;
+            break;
+        case 3:
+            address = regThree;
+            break;
+        case 4:
+            address = regFour;
+            break;
+        case 5:
+            address = regFive;
+            break;
+        case 6:
+            address = regSix;
+            break;
+        case 7:
+            address = regSeven;
+            break;
+        case 8:
+            address = regEight;
+            break;
+        case 9:
+            address = regNine;
+            break;
+        case 10:
+            address = regTen;
+            break;
+        case 11:
+            address = regEleven;
+            break;
+        case 12:
+            address = regTwelve;
+            break;
+        case 13:
+            address = regThirteen;
+            break;
+        case 14:
+            address = regFourteen;
+            break;
+        case 15:
+            address = regFifteen;
+            break;
+        case 16:
+            address = regFifteen;
+            break;
+        }
+    }
+
+
+    else
+    {
+        firstReg = programMem[programCounter][2];
+        secondReg = programMem[programCounter][3];
+    }
+}
+
+
+
+
